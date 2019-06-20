@@ -1,0 +1,154 @@
+<div id="interpolation">
+  <h2>Interpolation with template expressions</h2>
+  <!-- 渲染的数据为字符串，倾向于插值表达式 -->
+  <!-- 插值表达式可以插入到标签内文本 -->
+  <h3>Current customer: {{ currentCustomer.name }}</h3>
+  <!-- 插值表达式可以插入对标签属性进行赋值 -->
+  <p>{{title}}</p>
+  <div>
+    <img src="{{itemImageUrl}}" style="height:30px">
+  </div>
+  <!-- 括号间可以是一个表达式，先求值再转换成字符串 -->
+  <!-- The Sum of 1 + 1 is 2 -->
+  <p>The Sum of 1 + 1 is {{1 + 1}}</p>
+  <!-- 还可以调用宿主的方法 -->
+  <p>The sum of 1 + 1 is not {{1 + 1 + getVal()}}</p>
+</div>
+<div id="attributes">
+  <h2>Attributes bind</h2>
+  <!-- 
+    属性绑定是单向绑定
+    属性绑定和插值表达式不能同时使用，但数据类型不是字符串时，就必须使用属性绑定
+  -->
+  <!-- 属性绑定语法1 -->
+  <img [src]="heroImageUrl" style="height:30px">
+  <!-- 属性绑定语法2-规范形式 -->
+  <img bind-src="heroImageUrl" style="height:30px">
+  <!-- 子组件传值 -->
+  <!-- 方括号可有可无，有则可以是复杂类型；无则直接写字符串 -->
+  <app-child-component [hero]="currentCustomer.name" test='heroImageUrl'></app-child-component>
+</div>
+<div id="attribute-binding">
+  <h2>Attribute, class, and style bindings</h2>
+  <table border=1>
+    <tr>
+      <!-- Attribute属性绑定语法 -->
+      <td [attr.colspan]="1 + 1">One-Two</td>
+    </tr>
+    <tr>
+      <!-- 纯attribute：没有元素属性对应的attribute这样设置会报错 -->
+      <!-- <td colspan="{{1 + 1}}">Three-Four</td> -->
+    </tr>
+    <tr><td>Five</td><td>Six</td></tr>
+  </table>
+  <!-- 另一个典型的纯attribute -->
+  <button [attr.aria-label]="actionName">{{actionName}} with Aria</button>
+  <!-- css类绑定语法1-全替换型 如果badCurly属性有值则class全替换为badCurly属性值 -->
+  <div class="bad curly special" [class]="badCurly">Bad curly</div>
+  <!-- css类绑定语法2-绑定特定类 如果isSpecial为true，则样式类添加special；若为false，则在样式类中删除special类 -->
+  <div [class.special]="isSpecial">The class binding is special</div>
+  <div class="special" [class.special]="!isSpecial">The one is not so special</div>
+  <!-- css类绑定语法3-设置内联样式 -->
+  <!-- 样式属性命名方法可以用中线命名法或驼峰命名 -->
+  <button [style.color]="isSpecial ? 'red' : 'green'">Red</button>
+  <!-- css类绑定语法3-设置内联样式带单位 -->
+  <button [style.font-size.em]="isSpecial ? 3 : 1">Big</button>
+  <button [style.font-size.%]="isSpecial ? 150 : 150">Small</button>
+</div>
+<div id="event-binding">
+  <h2>Event Binding</h2>
+  <!-- 事件绑定语法1 -->
+  <button (click)="onSave($event)">Save</button>
+  <!-- 事件绑定语法2-规范形式 -->
+  <button on-click="onSave($event)">on-click Save</button>
+  <h4>myClick is an event on the custom ClickDirective:</h4>
+  <button (myClick)="clickMessage=$event" clickable>Click with myClick</button>
+  {{clickMessage}}
+  <input [value]="currentItem.name" (input)="currentItem.name=$event.target.value"> without NgModel{{currentItem.name}}
+</div>
+<div id="Two-way-binding">
+  <h2>Two-way binding</h2>
+  <app-sizer [(size)]="fontSizePx"></app-sizer>
+  <div [style.font-size.px]="fontSizePx">Resizable Text</div>
+</div>
+<div id="NgModel">
+  <h2>NgModel - Two-way binding to form elements with [(ngModel)]</h2>
+  <!-- ngModelChange可以做更多 -->
+  <input [(ngModel)]="currentCustomer.name" (ngModelChange)="currentCustomer.name=$event">
+  <!-- 几种双向数据绑定的方法 -->
+  <h3>Result: {{currentCustomer.name}}</h3>
+  <!-- 1.控制value值[value]、(input) 表单控件的内容改变使更改value值  -->
+  <input [value]="currentCustomer.name"
+         (input)="currentCustomer.name=$event.target.value">
+  without NgModel
+  <br>
+  <!-- 2.直接使用ng指令[(ngModel)] -->
+  <input [(ngModel)]="currentCustomer.name">[(ngModel)]
+  <br>
+  <!-- 3.使用ng指令bindon-ngModel -->
+  <input bindon-ngModel="currentCustomer.name">bindon-ngModel
+  <br>
+  <!-- 4.(ngModelChange)更改时触发 -->
+  <input
+    [ngModel]="currentCustomer.name"
+    (ngModelChange)="currentCustomer.name=$event">(ngModelChange)="...name=$event"
+  <br>
+  <!-- 5.(ngModelChange)更改时触发 -->
+  <input 
+    [ngModel]="currentCustomer.name"
+    (ngModelChange)="setUppercaseName($event)">(ngModelChange)="setUppercaseName($event)"
+</div>
+<div id="NgIf">
+  <h2>NgIf</h2>
+  <!-- 应用场景1：ngIf在dom中增加或移除元素 -->
+    <!-- ngIf语法 -->
+      <!-- app-child-component不在dom中 -->
+  <app-child-component *ngIf="isActive"></app-child-component>
+    <!-- ngIf与通过样式隐藏/显示元素的方式不一样 -->
+  <div [class.hidden]="!isSpecial">Show with class</div>
+  <div [class.hidden]="isSpecial">Hide with class</div>
+      <!-- app-child-component在dom中，但隐藏了 -->
+  <app-child-component [class.hidden]="isSpecial"></app-child-component>
+  <div [style.display]="isSpecial ? 'block': 'none'">Show with style</div>
+  <div [style.display]="isSpecial ? 'none': 'block'">Hide with style</div>
+
+  <!-- 应用场景2：防范空指针报错 -->
+  <div *ngIf="currentCustomer">Hello, {{currentCustomer.name}}</div>
+  <div *ngIf="nullHero">Hello, {{nullHero.name}}</div>
+</div>
+<div id="NgForOf">
+  <h2>NgForOf</h2>
+  <!-- ngFor语法 -->
+  <div *ngFor="let hero of heroes">{{hero.name}}</div>
+  <!-- 也可应用在组件元素上 -->
+  <app-child-component *ngFor="let hero of heroes" [hero]="hero"></app-child-component>
+</div>
+<div id="TemplateInputVariable">
+  <h2>Template input variables</h2>
+  <!-- ngFor带索引 -->
+  <div *ngFor="let hero of heroes; let i = index">{{i + 1}} - {{hero.name}}</div>
+
+  <button (click)="resetHeroes()">Reset heroes</button>
+  <button (click)="changeIds()">Change ids</button>
+  <button (click)="clearTrackByCounts()">Clear counts</button>
+
+  <p><i>without</i> c</p>
+  <div class="box">
+    <div #noTrackBy *ngFor="let hero of heroes">({{hero.id}}) {{hero.name}}</div>
+
+    <div id="noTrackByCnt" *ngIf="heroesNoTrackByCount">
+      Hero DOM elements change #{{heroesNoTrackByCount}} without trackBy
+    </div>
+  </div>
+
+  <p>with trackBy</p>
+  <div class="box">
+    <div #withTrackBy *ngFor="let hero of heroes; trackBy: trackByHeroes">
+      ({{hero.id}} ) {{hero.name}}
+
+      <div id="withTrackByCnt" *ngIf="heroesWithTrackByCount">
+        Hero DOM elements change #{{heroesWithTrackByCount}} with trackBy
+      </div>
+    </div>
+  </div>
+</div>
