@@ -154,3 +154,25 @@
     <app-unknown-hero *ngSwitchDefault [hero]="currentCustomer"></app-unknown-hero>
   </div>
 </div>
+<div id="ref-vars">
+  <h2>Template reference variables</h2>
+  <!-- 语法1：#模板引用变量 -->
+  <!-- 当模板引用变量为元素时，可直接使用 -->
+  <input placeholder="phone number" #phone>
+  <button (click)="callPhone(phone.value)">Call</button>
+  <!-- 当模板引用变量为指令时，需要在ts中使用@ViewChild，指明该变量是什么 -->
+  <form (ngSubmit)="onSubmit(heroForm)" #heroForm="ngForm">
+    <div class="form-group">
+      <label for="name">Name
+        <input class="form-control" name="name" required [(ngModel)]="currentCustomer.name">
+      </label>
+    </div>
+    <button type="submit" [disabled]="!heroForm.form.valid">Submit</button>
+  </form>
+  <div [hidden]="!heroForm.form.valid">
+    {{submitMessage}}
+  </div>
+  <!-- 语法2：ref-模板引用变量 -->
+  <input ref-fax placeholder="fax number">
+  <button (click)="callFax(fax.value)">Fax</button>
+</div>

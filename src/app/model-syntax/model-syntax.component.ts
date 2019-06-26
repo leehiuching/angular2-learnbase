@@ -1,4 +1,5 @@
-import { Component, OnInit, AfterViewInit, QueryList, ViewChildren, ElementRef } from '@angular/core';
+import { Component, OnInit, AfterViewInit, QueryList, ViewChildren, ElementRef, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Hero } from '../hero'
 
 @Component({
@@ -26,9 +27,19 @@ export class ModelSyntaxComponent implements OnInit {
   fontSizePx = 16;
   isActive = false;
   currentHero: Hero;
+  hero: Hero; // defined to demonstrate template context precedence
+  private _submitMessage = '';
+  @ViewChild('heroForm') form: NgForm;
 
 
   get nullHero(): Hero { return null; }
+
+  get submitMessage() {
+    if (!this.form.valid) {
+      this._submitMessage = '';
+    }
+    return this._submitMessage;
+  }
   
   constructor() { }
 
@@ -65,5 +76,18 @@ export class ModelSyntaxComponent implements OnInit {
     console.log('trackByItem:', item);
     return index; //会根据index是否有变化-》再对比每一项的内容
   }
+
+  callPhone(value: string) {
+    this.alert(`Calling ${value} ...`); 
+  }
+
+  alert(msg?: string) { 
+    window.alert(msg); 
+  }
+
+  onSubmit(form: NgForm) {
+    this._submitMessage =  'Submitted. form value is ' + JSON.stringify(form.value);
+  }
   
+  callFax(value: string)   { this.alert(`Faxing ${value} ...`); }
 }
