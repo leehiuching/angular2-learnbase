@@ -9,9 +9,9 @@ import { Hero } from '../hero'
 export class ModelSyntaxComponent implements OnInit {
 
   heroes = [
-    new Hero(1, 'Windstorm'),
-    new Hero(2, 'Bombasto'),
-    new Hero(3, 'Mageneta'),
+    new Hero(1, 'Windstorm', 'happy'),
+    new Hero(2, 'Bombasto', 'sad'),
+    new Hero(3, 'Mageneta', 'confused'),
     new Hero(4, 'Tornado')
   ];
   currentCustomer = this.heroes[0];
@@ -26,13 +26,6 @@ export class ModelSyntaxComponent implements OnInit {
   fontSizePx = 16;
   isActive = false;
   currentHero: Hero;
-  hero: Hero; // defined to demonstrate template context precedence
-  heroesWithTrackByCountReset = 0;
-  heroIdIncrement = 1;
-  heroesNoTrackByCount   = 0;
-  @ViewChildren('noTrackBy')   heroesNoTrackBy:   QueryList<ElementRef>;
-  @ViewChildren('withTrackBy') heroesWithTrackBy: QueryList<ElementRef>;
-  heroesWithTrackByCount = 0;
 
 
   get nullHero(): Hero { return null; }
@@ -40,13 +33,9 @@ export class ModelSyntaxComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.resetHeroes();
   }
 
   ngAfterViewInit() {
-    // Detect effects of NgForTrackBy
-    trackChanges(this.heroesNoTrackBy,   () => this.heroesNoTrackByCount++);
-    trackChanges(this.heroesWithTrackBy, () => this.heroesWithTrackByCount++);
   }
 
   getVal() {
@@ -61,39 +50,20 @@ export class ModelSyntaxComponent implements OnInit {
     this.currentCustomer.name = name.toUpperCase();
   }
 
-  // updates with fresh set of cloned heroes
-  resetHeroes() {
-    this.heroes = Hero.heroes.map(hero => hero.clone());
-    this.currentHero = this.heroes[0];
-    this.hero = this.currentHero;
-    this.heroesWithTrackByCountReset = 0;
+  getItems() {
+    this.heroes = [
+      new Hero(1, 'Windstorm'),
+      new Hero(2, 'Bombasto'),
+      new Hero(3, 'Mageneta'),
+      new Hero(4, 'Tornado'),
+      new Hero(5, 'xuezhiqian'),
+    ];
   }
 
-  changeIds() {
-    this.resetHeroes();
-    this.heroes.forEach(h => h.id += 10 * this.heroIdIncrement++);
-    this.heroesWithTrackByCountReset = -1;
+  trackyByIndex(index, item ){
+    console.log('trackByIndex:', index);
+    console.log('trackByItem:', item);
+    return index; //会根据index是否有变化-》再对比每一项的内容
   }
-
-  clearTrackByCounts() {
-    const trackByCountReset = this.heroesWithTrackByCountReset;
-    this.resetHeroes();
-    this.heroesNoTrackByCount = -1;
-    this.heroesWithTrackByCount = trackByCountReset;
-    this.heroIdIncrement = 1;
-  }
-}
-// helper to track changes to viewChildren
-function trackChanges(views: QueryList<ElementRef>, changed: () => void) {
-  let oldRefs = views.toArray();
-  views.changes.subscribe((changes: QueryList<ElementRef>) => {
-      const changedRefs = changes.toArray();
-      // Check if every changed Element is the same as old and in the same position
-      const isSame = oldRefs.every((v, i) => v.nativeElement === changedRefs[i].nativeElement);
-      if (!isSame) {
-        oldRefs = changedRefs;
-        // wait a tick because called after views are constructed
-        setTimeout(changed, 0);
-      }
-  });
+  
 }

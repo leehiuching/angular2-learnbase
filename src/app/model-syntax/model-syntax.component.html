@@ -128,27 +128,29 @@
   <!-- ngFor带索引 -->
   <div *ngFor="let hero of heroes; let i = index">{{i + 1}} - {{hero.name}}</div>
 
-  <button (click)="resetHeroes()">Reset heroes</button>
-  <button (click)="changeIds()">Change ids</button>
-  <button (click)="clearTrackByCounts()">Clear counts</button>
-
-  <p><i>without</i> c</p>
-  <div class="box">
-    <div #noTrackBy *ngFor="let hero of heroes">({{hero.id}}) {{hero.name}}</div>
-
-    <div id="noTrackByCnt" *ngIf="heroesNoTrackByCount">
-      Hero DOM elements change #{{heroesNoTrackByCount}} without trackBy
-    </div>
+  <!-- trackBy start -->
+  <!-- 没用trackBy，在heroes变化时元素会重新加载 -->
+  <ul>
+    <li *ngFor="let hero of heroes">{{hero.name}}</li>
+  </ul>
+  <ul>
+    <li *ngFor="let hero of heroes, trackBy: trackyByIndex">{{hero.name}}</li>
+  </ul>
+  <button (click)="getItems()">Get Items</button>
+  <!-- trackBy end -->
+</div>
+<div id="ngSwitch">
+  <h2>The NgSwitch directives</h2>
+  <p>Pick your favorite hero</p>
+  <div>
+    <label *ngFor="let h of heroes">
+      <input type="radio" name="heroes" [(ngModel)]="currentCustomer" [value]="h">{{h.name}}
+    </label>
   </div>
-
-  <p>with trackBy</p>
-  <div class="box">
-    <div #withTrackBy *ngFor="let hero of heroes; trackBy: trackByHeroes">
-      ({{hero.id}} ) {{hero.name}}
-
-      <div id="withTrackByCnt" *ngIf="heroesWithTrackByCount">
-        Hero DOM elements change #{{heroesWithTrackByCount}} with trackBy
-      </div>
-    </div>
+  <div [ngSwitch]="currentCustomer.emotion">
+    <app-happy-hero *ngSwitchCase="'happy'" [hero]="currentCustomer"></app-happy-hero>
+    <app-sad-hero *ngSwitchCase="'sad'" [hero]="currentCustomer"></app-sad-hero>
+    <app-confused-hero *ngSwitchCase="'confused'" [hero]="currentCustomer"></app-confused-hero>
+    <app-unknown-hero *ngSwitchDefault [hero]="currentCustomer"></app-unknown-hero>
   </div>
 </div>
