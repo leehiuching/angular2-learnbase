@@ -8,6 +8,7 @@ import { ModelSyntaxComponent } from './model-syntax/model-syntax.component';
 import { ChildComponentComponent } from './child-component/child-component.component';
 import { SizerComponent } from './sizer/sizer.component';
 import { HeroSwitchComponent } from './hero-switch/hero-switch.component';
+import { HeroDetailComponent } from './app-hero-detail/app-hero-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HeroSwitchComponent } from './hero-switch/hero-switch.component';
     ModelSyntaxComponent,
     ChildComponentComponent,
     SizerComponent,
-    HeroSwitchComponent
+    HeroSwitchComponent,
+    HeroDetailComponent
   ],
   imports: [
     BrowserModule,

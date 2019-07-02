@@ -72,8 +72,6 @@ export class ModelSyntaxComponent implements OnInit {
   }
 
   trackyByIndex(index, item ){
-    console.log('trackByIndex:', index);
-    console.log('trackByItem:', item);
     return index; //会根据index是否有变化-》再对比每一项的内容
   }
 
@@ -90,4 +88,8 @@ export class ModelSyntaxComponent implements OnInit {
   }
   
   callFax(value: string)   { this.alert(`Faxing ${value} ...`); }
+
+  deleteHero(hero?: Hero) {
+    this.alert(`Delete ${hero ? hero.name : 'the hero'}.`);
+  }
 }
