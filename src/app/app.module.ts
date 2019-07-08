@@ -8,7 +8,8 @@ import { ModelSyntaxComponent } from './model-syntax/model-syntax.component';
 import { ChildComponentComponent } from './child-component/child-component.component';
 import { SizerComponent } from './sizer/sizer.component';
 import { HeroSwitchComponent } from './hero-switch/hero-switch.component';
-import { HeroDetailComponent } from './app-hero-detail/app-hero-detail.component';
+import { BigHeroDetailComponent, HeroDetailComponent } from './app-hero-detail/app-hero-detail.component';
+import { ClickDirective, ClickDirective2 } from './click.directive';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,10 @@ import { HeroDetailComponent } from './app-hero-detail/app-hero-detail.component
     ChildComponentComponent,
     SizerComponent,
     HeroSwitchComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    BigHeroDetailComponent,
+    ClickDirective,
+    ClickDirective2
   ],
   imports: [
     BrowserModule,

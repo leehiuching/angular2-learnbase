@@ -179,4 +179,9 @@
 <div id="mental-model">
   <h2>Input and Output properties</h2>
   <app-hero-detail [hero]="currentCustomer" (deleteRequest)="deleteHero($event)"></app-hero-detail>
+  <app-big-hero-detail (deleteRequest)="deleteHero($event)" [hero]="currentCustomer"></app-big-hero-detail>
+  <button (myClick)="clickMessage=$event" clickable>Click with myClick</button>
+  {{clickMessage}}
+  <div (myClick)="clickMessage2=$event" clickable>myClick2</div>
+  {{clickMessage2}}
 </div>

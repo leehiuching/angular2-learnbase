@@ -9,13 +9,8 @@ import { Hero } from '../hero'
 })
 export class ModelSyntaxComponent implements OnInit {
 
-  heroes = [
-    new Hero(1, 'Windstorm', 'happy'),
-    new Hero(2, 'Bombasto', 'sad'),
-    new Hero(3, 'Mageneta', 'confused'),
-    new Hero(4, 'Tornado')
-  ];
-  currentCustomer = this.heroes[0];
+  heroes: Hero[];
+  currentCustomer: Hero;
   title = 'Template Syntax';
   itemImageUrl = 'https://angular.staticblitz.com/a2d8b336.png';
   heroImageUrl: string = 'https://angular.staticblitz.com/a2d8b336.png';
@@ -27,7 +22,7 @@ export class ModelSyntaxComponent implements OnInit {
   fontSizePx = 16;
   isActive = false;
   currentHero: Hero;
-  hero: Hero; // defined to demonstrate template context precedence
+  clickMessage2 = '';
   private _submitMessage = '';
   @ViewChild('heroForm') form: NgForm;
 
@@ -44,9 +39,15 @@ export class ModelSyntaxComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.resetHeroes();
   }
 
   ngAfterViewInit() {
+  }
+
+  resetHeroes() {
+    this.heroes = Hero.heroes.map(hero => hero.clone());
+    this.currentCustomer = this.heroes[0];
   }
 
   getVal() {

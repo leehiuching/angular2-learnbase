@@ -6,6 +6,7 @@ import { Hero } from '../hero';
 @Component({
   selector: 'app-hero-detail',
   // tslint:disable: no-inputs-metadata-property no-outputs-metadata-property
+  // 用法2：在指令元数据的 inputs 或 outputs 数组中标记
   inputs: ['hero'],
   outputs: ['deleteRequest'],
   // tslint:enable: no-inputs-metadata-property no-outputs-metadata-property
@@ -58,8 +59,9 @@ export class HeroDetailComponent {
 })
 export class BigHeroDetailComponent extends HeroDetailComponent {
 
-  // @Input() hero: Hero;
-  // @Output() deleteRequest = new EventEmitter<Hero>();
+  // 用法1：使用@Input和@Output装饰器
+  @Input() hero: Hero;
+  @Output() deleteRequest = new EventEmitter<Hero>();
 
   delete() {
     this.deleteRequest.emit(this.hero);
