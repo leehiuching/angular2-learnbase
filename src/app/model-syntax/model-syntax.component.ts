@@ -25,7 +25,7 @@ export class ModelSyntaxComponent implements OnInit {
   clickMessage2 = '';
   private _submitMessage = '';
   @ViewChild('heroForm') form: NgForm;
-
+  hero: Hero;
 
   get nullHero(): Hero { return null; }
 
@@ -48,6 +48,7 @@ export class ModelSyntaxComponent implements OnInit {
   resetHeroes() {
     this.heroes = Hero.heroes.map(hero => hero.clone());
     this.currentCustomer = this.heroes[0];
+    this.hero = this.currentCustomer;
   }
 
   getVal() {

@@ -22,9 +22,9 @@ import { Hero } from '../hero';
 })
 export class HeroDetailComponent {
   hero: Hero = new Hero(-1, '', 'Zzzzzzzz'); // default sleeping hero
-  // heroImageUrl = 'http://www.wpclipart.com/cartoon/people/hero/hero_silhoutte_T.png';
+  heroImageUrl = 'http://www.wpclipart.com/cartoon/people/hero/hero_silhoutte_T.png';
   // Public Domain terms of use: http://www.wpclipart.com/terms.html
-  heroImageUrl = 'assets/images/hero.png';
+  // heroImageUrl = 'assets/images/hero.png';
   lineThrough = '';
   @Input() prefix = '';
 

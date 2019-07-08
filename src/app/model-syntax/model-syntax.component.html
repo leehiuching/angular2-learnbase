@@ -182,6 +182,33 @@
   <app-big-hero-detail (deleteRequest)="deleteHero($event)" [hero]="currentCustomer"></app-big-hero-detail>
   <button (myClick)="clickMessage=$event" clickable>Click with myClick</button>
   {{clickMessage}}
-  <div (myClick)="clickMessage2=$event" clickable>myClick2</div>
+  <div (myClick2)="clickMessage2=$event" clickable>myClick2</div>
   {{clickMessage2}}
+</div>
+<div id="tempExpressionOperators">
+  <h2>tempExpressionOperators</h2>
+  <h3>Pipes</h3>
+  <!-- 语法1：变量 | 转换函数 -->
+  <div>Title through uppercase pipe: {{title | uppercase}}</div>
+  <!-- 语法2：变量 | 转换函数1 | 转换函数2 -->
+  <div>Title through a pipe chain: {{title | uppercase | lowercase}}</div>
+  <!-- 语法3：变量 | 转换函数:'参数' -->
+  <div>Birthdate: {{currentCustomer?.birthdate | date: 'longDate'}}</div>
+  <div>{{currentCustomer | json}}</div>
+  <h3>Safe navigation operator <i>?.</i></h3>
+  <div>The title is {{title}}</div>
+  <div>The current hero's name is {{currentCustomer?.name}}</div>
+  <div>The current hero's name is {{currentCustomer.name}}</div>
+  <!-- <div>The null hero's name is {{nullHero.name}}</div> -->
+  <div *ngIf="nullHero">The null hero's name is {{nullHero.name}}</div>
+  <div>The null hero's name is {{nullHero && nullHero.name}}</div>
+  <!-- 安全导航操作符对空属性路径 遇到属性为null则返回null -->
+  <div>The null hero's name is {{nullHero?.name}}</div>
+  <h3>Non-null assertion operator <i>!.</i></h3>
+  <!-- 非空断言操作符! 暂未发现实际用处 -->
+  <div *ngIf="hero">The hero's name is {{hero!.name}}</div>
+</div>
+<div id="any-type-cast-function">
+  <h2>$any type cast function <i>$any( )</i>.</h2>
+  <div>The hero's marker is {{$any(hero).marker}}</div>
 </div>

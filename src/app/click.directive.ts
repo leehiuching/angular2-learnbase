@@ -21,7 +21,7 @@ export class ClickDirective {
   selector: '[myClick2]',
   // tslint:disable: no-outputs-metadata-property
   // 用法2：在 inputs 和 outputs 数组中为属性指定别名
-  outputs: ['clicks:myClick']  // propertyName:alias
+  outputs: ['clicks:myClick2']  // propertyName:alias
 })
 // tslint:enable: no-outputs-metadata-property
 export class ClickDirective2 {
