@@ -14,6 +14,7 @@ import { Hero } from './hero'
     </ul>
     <p *ngIf="heroes.length > 3">There are many heroes!</p>
     <app-model-syntax></app-model-syntax>
+    <app-user-input></app-user-input>
   `
 })
 export class AppComponent {

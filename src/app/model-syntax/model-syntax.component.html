@@ -210,5 +210,8 @@
 </div>
 <div id="any-type-cast-function">
   <h2>$any type cast function <i>$any( )</i>.</h2>
+  <!-- 未发现实际用处 -->
   <div>The hero's marker is {{$any(hero).marker}}</div>
+  <!-- $any() 转换函数和 this 联合使用，方便访问组件中未声明过的成员 -->
+  <div>Undeclared members is {{$any(this).member}}</div>
 </div>

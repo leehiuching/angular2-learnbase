@@ -26,6 +26,7 @@ export class ModelSyntaxComponent implements OnInit {
   private _submitMessage = '';
   @ViewChild('heroForm') form: NgForm;
   hero: Hero;
+  aa = [];
 
   get nullHero(): Hero { return null; }
 
