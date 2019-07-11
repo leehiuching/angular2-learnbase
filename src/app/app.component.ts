@@ -13,8 +13,12 @@ import { Hero } from './hero'
       </li>
     </ul>
     <p *ngIf="heroes.length > 3">There are many heroes!</p>
+    <h1 style="border-left: 10px solid pink; padding-left: 8px; color: crimson;">模板语法</h1>
     <app-model-syntax></app-model-syntax>
+    <div style="border-bottom: 10px dashed cornflowerblue; margin-top: 0.67em;"></div>
+    <h1 style="border-left: 10px solid pink; padding-left: 8px; color: crimson;">用户输入</h1>
     <app-user-input></app-user-input>
+    <div style="border-bottom: 10px dashed cornflowerblue; margin-top: 0.67em;"></div>
   `
 })
 export class AppComponent {
