@@ -12,6 +12,7 @@ import { BigHeroDetailComponent, HeroDetailComponent } from './app-hero-detail/a
 import { ClickDirective, ClickDirective2 } from './click.directive';
 import { UserInputComponent } from './user-input/user-input.component';
 import { ClickMeComponent } from './click-me/click-me.component';
+import { KeyupComponent } from './keyup/keyup.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ClickMeComponent } from './click-me/click-me.component';
     ClickDirective,
     ClickDirective2,
     UserInputComponent,
-    ClickMeComponent
+    ClickMeComponent,
+    KeyupComponent
   ],
   imports: [
     BrowserModule,
