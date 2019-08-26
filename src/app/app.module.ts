@@ -12,7 +12,12 @@ import { BigHeroDetailComponent, HeroDetailComponent } from './app-hero-detail/a
 import { ClickDirective, ClickDirective2 } from './click.directive';
 import { UserInputComponent } from './user-input/user-input.component';
 import { ClickMeComponent } from './click-me/click-me.component';
-import { KeyupComponent } from './keyup/keyup.component';
+import { KeyupComponent_v1 } from './keyup/keyup.component';
+import { KeyupComponent_v2 } from './keyup/keyup.component';
+import { KeyupComponent_v3 } from './keyup/keyup.component';
+import { KeyupComponent_v4 } from './keyup/keyup.component';
+import { LoopBackComponent } from './user-input/loop-back/loop-back.component';
+import { LittleTourComponent } from './little-tour/little-tour.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,12 @@ import { KeyupComponent } from './keyup/keyup.component';
     ClickDirective2,
     UserInputComponent,
     ClickMeComponent,
-    KeyupComponent
+    KeyupComponent_v1,
+    KeyupComponent_v2,
+    KeyupComponent_v3,
+    KeyupComponent_v4,
+    LoopBackComponent,
+    LittleTourComponent
   ],
   imports: [
     BrowserModule,
