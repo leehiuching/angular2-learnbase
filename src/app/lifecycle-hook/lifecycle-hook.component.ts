@@ -5,11 +5,4 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './lifecycle-hook.component.html',
   styleUrls: ['./lifecycle-hook.component.css']
 })
-export class LifecycleHookComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+export class LifecycleHookComponent {}

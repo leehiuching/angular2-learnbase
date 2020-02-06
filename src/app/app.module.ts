@@ -21,6 +21,7 @@ import { LittleTourComponent } from './little-tour/little-tour.component';
 import { LifecycleHookComponent } from './lifecycle-hook/lifecycle-hook.component';
 import { PeekABooParentComponent } from './lifecycle-hook/peek-a-boo-parent/peek-a-boo-parent.component';
 import { PeekABooComponent } from './lifecycle-hook/peek-a-boo/peek-a-boo.component';
+import { LoggerService } from "./lifecycle-hook/logger.service";
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { PeekABooComponent } from './lifecycle-hook/peek-a-boo/peek-a-boo.compon
     BrowserModule,
     FormsModule  // <--- import into the NgModule
   ],
-  providers: [],
+  providers: [LoggerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

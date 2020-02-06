@@ -6,7 +6,7 @@
   <button (click)="updateHero()" [hidden]="!hasChild">
     Update Hero
   </button>
-  <peek-A-boo *ngIf="hasChild" [name]="heroName"></peek-A-boo>
+  <peek-a-boo *ngIf="hasChild" [name]="heroName"></peek-a-boo>
   <h4>-- Lifecycle Hook Log --</h4>
   <div *ngFor="let msg of hookLog">{{msg}}</div>
 </div>
