@@ -22,6 +22,8 @@ import { LifecycleHookComponent } from './lifecycle-hook/lifecycle-hook.componen
 import { PeekABooParentComponent } from './lifecycle-hook/peek-a-boo-parent/peek-a-boo-parent.component';
 import { PeekABooComponent } from './lifecycle-hook/peek-a-boo/peek-a-boo.component';
 import { LoggerService } from "./lifecycle-hook/logger.service";
+import { SpyParentComponent } from './lifecycle-hook/spy/spy.component';
+import { SpyDirective } from './lifecycle-hook/spy/spy.directive';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { LoggerService } from "./lifecycle-hook/logger.service";
     LittleTourComponent,
     LifecycleHookComponent,
     PeekABooParentComponent,
-    PeekABooComponent
+    PeekABooComponent,
+    SpyParentComponent,
+    SpyDirective
   ],
   imports: [
     BrowserModule,

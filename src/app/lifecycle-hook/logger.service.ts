@@ -8,9 +8,10 @@ export class LoggerService {
 
   log(msg: string) {
     if (msg === this.prevMsg) {
-      this.logs[this.logs.length - 1] = msg + ` (${this.prevMsgCount += 1}x)
-      `;
-    }else {
+      // Repeat message; update last log entry with count.
+      this.logs[this.logs.length - 1] = msg + ` (${this.prevMsgCount += 1}x)`;
+    } else {
+      // New message; log it.
       this.prevMsg = msg;
       this.prevMsgCount = 1;
       this.logs.push(msg);
@@ -18,7 +19,8 @@ export class LoggerService {
   }
 
   clear() { this.logs = []; }
-  
+
+  // schedules a view refresh to ensure display catches up
   tick() { this.tick_then(() => {}); }
   tick_then(fn: () => any) { setTimeout(fn, 0); }
 }
