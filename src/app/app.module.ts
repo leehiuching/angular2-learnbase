@@ -24,6 +24,8 @@ import { PeekABooComponent } from './lifecycle-hook/peek-a-boo/peek-a-boo.compon
 import { LoggerService } from "./lifecycle-hook/logger.service";
 import { SpyParentComponent } from './lifecycle-hook/spy/spy.component';
 import { SpyDirective } from './lifecycle-hook/spy/spy.directive';
+import { OnChangesComponent, OnChangesParentComponent } from './lifecycle-hook/on-changes/on-changes.component';
+import { DoCheckComponent, DoCheckParentComponent } from './lifecycle-hook/do-check/do-check.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,11 @@ import { SpyDirective } from './lifecycle-hook/spy/spy.directive';
     PeekABooParentComponent,
     PeekABooComponent,
     SpyParentComponent,
-    SpyDirective
+    SpyDirective,
+    OnChangesComponent,
+    OnChangesParentComponent,
+    DoCheckComponent,
+    DoCheckParentComponent
   ],
   imports: [
     BrowserModule,
